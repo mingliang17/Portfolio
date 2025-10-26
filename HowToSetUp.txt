@@ -1,0 +1,37 @@
+Install npm:
+
+
+Install Tailwind:
+
+Need to npm both tailwind and tailwind vite plugin
+Add into the vite.config.js 'tailwindcss()'
+
+Install FontAwesome:
+
+Install Three:
+npm install three
+
+Install React-Three-Fiber:
+npm install react-three-fiber
+
+Install React-Three-Drei:
+npm install @react-three/drei
+
+Prepare a tailwind.config.js file (good to reduce fail to scan errors)
+// tailwind.config.js
+export default {
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+};
+
+Install GSAP
+npm install GSAP
+
+Install GSAP React Helper plugin
+npm install gsap @gsap/react
+
+Install Leva
+Install React-Responsive
+
+
+Install Emailjs
+npm install @emailjs/browser

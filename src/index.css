@@ -1,0 +1,275 @@
+/* 1. Import fonts */
+@import url('https://fonts.cdnfonts.com/css/kg-keep-your-head-up');
+
+/* 2. Import TailwindCSS core */
+@import "tailwindcss";
+
+/* 3. Browser-level global reset (raw CSS allowed here, not Tailwind aware) */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* 4. Theme tokens (Tailwind aware, only variables / declare tokens here, they are not yet being set to default until you reach @layer)
+   ❌ Don’t put normal CSS like background-color or color-scheme inside @theme
+   ✅ Only design tokens: fonts, colors, spacing, etc.
+*/
+@theme {
+  /* Custom font stack with fallbacks, comes with -- so you can use it outside tailwind in css as well*/
+  --font-all: 'KG Keep Your Head Up', Avenir, Helvetica, Arial, sans-serif;
+
+  /* Brand / neutral color tokens 
+   Custom tokens that change the default tailwind options*/
+  --color-black-200: #1e1e1e;
+  --color-black-300: #2a2a2a;
+  --color-black-500: #3a3a3a;
+  --color-black-600: #4a4a4a;
+
+  --color-white-500: #e5e7eb;
+  --color-white-600: #d1d5db;
+  --color-white-800: #f9fafb;
+
+  --color-anythingiwant-400: #f4f4f4;
+}
+
+/* 5. Base styles (global resets & overrides)
+   ✅ Good for setting up global font-family, body styles, etc.
+   ✅ Uses Tailwind tokens where possible.
+*/
+@layer base {
+  :root {
+    /* Font setup */
+    font-family: var(--font-all);
+    line-height: 1.5; /* Improves readability */
+    font-weight: 400; /* Normal weight */
+    /* Default colors for text and background (color is set using css in this case and bg-color using tailwind token */
+    color: rgba(255, 255, 255, 0.87);
+    background-color: var(--color-black-200);
+    /* Rendering tweaks for sharper text */
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Browser hint: supports both light and dark mode */
+    color-scheme: light dark;
+
+  }
+
+  body {
+    /* Resets + basic layout */
+    @apply m-0 p-0 min-w-[320px] w-full min-h-screen;
+  }
+
+  h1 {
+    /* Title size */
+    @apply text-[3.2em] leading-tight;
+  }
+
+  a {
+    /* Link style */
+    @apply font-medium text-[#646cff] no-underline hover:text-[#535bf2];
+  }
+
+  button {
+    /* Base button style */
+    @apply rounded-lg border border-transparent px-[1.2em] py-[0.6em] text-base font-medium bg-[#1a1a1a] cursor-pointer transition-colors;
+    font-family: inherit; /* Use raw CSS for inherit */
+  }
+
+  button:hover {
+    @apply border-[#646cff];
+  }
+
+  button:focus,
+  button:focus-visible {
+    /* Accessibility: visible focus ring */
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+
+  /* Light mode overrides */
+  @media (prefers-color-scheme: light) {
+    :root {
+      color: #213547;
+      background-color: #ffffff;
+    }
+    a:hover {
+      color: #747bff;
+    }
+    button {
+      background-color: #f9f9f9;
+    }
+  }
+}
+
+/* 6. Custom utilities (your own Tailwind-like classes)
+   ✅ You can use @apply to combine Tailwind utilities into one reusable class.
+*/
+@layer utilities {
+
+
+  .text-gray_gradient {
+    @apply bg-gradient-to-r from-[#BEC1CF] from-60% via-[#D5D8EA] via-60% to-[#D5D8EA] to-100% bg-clip-text text-transparent;
+  }
+  /* Spacing utility */
+  .c-space {
+    @apply sm:px-10 px-5;
+  }
+
+  /* Gradient heading text */
+  .head-text {
+    @apply sm:text-4xl text-3xl font-semibold bg-gradient-to-r from-[#BEC1CF] from-60% via-[#D5D8EA] via-60% to-[#D5D8EA] bg-clip-text text-transparent;
+  }
+
+  /* Navigation menu */
+  .nav-ul {
+    @apply flex flex-col items-center gap-4 sm:flex-row md:gap-6 relative z-20;
+  }
+
+  .nav-li {
+    @apply text-neutral-400 hover:text-white font-all max-sm:hover:bg-black-500 max-sm:w-full max-sm:rounded-md py-2 max-sm:px-5;
+  }
+
+  .nav-li_a {
+    @apply text-lg md:text-base hover:text-white transition-colors;
+  }
+
+  .nav-sidebar {
+    @apply absolute left-0 right-0 bg-black-200 backdrop-blur-sm transition-all duration-300 ease-in-out overflow-hidden z-20 mx-auto sm:hidden block;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply flex gap-4 items-center justify-center cursor-pointer p-3 rounded-md bg-black-300 transition-all active:scale-95 text-white mx-auto;
+  }
+
+  .btn-ping {
+    @apply animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400/75;
+  }
+
+  .btn-ping_dot {
+    @apply relative inline-flex rounded-full h-3 w-3 bg-green-500;
+  }
+
+  /* Hero section text */
+  .hero_tag {
+    @apply text-center xl:text-6xl md:text-5xl sm:text-4xl text-3xl font-all font-black !leading-normal;
+  }
+
+  /* Grid containers */
+  .grid-container {
+    @apply w-full h-full border border-black-300 bg-black-200 rounded-lg sm:p-7 p-4 flex flex-col gap-5;
+  }
+
+  .grid-headtext {
+    @apply text-xl font-semibold mb-2 text-white font-all;
+  }
+
+  .grid-subtext {
+    @apply text-[#afb0b6] text-base font-all;
+  }
+
+  /* Copy-to-clipboard area */
+  .copy-container {
+    @apply cursor-pointer flex justify-center items-center gap-2;
+  }
+
+
+  /* Arrow button with custom gradient background */
+  .arrow-btn {
+    @apply w-10 h-10 p-3 cursor-pointer active:scale-95 transition-all rounded-full;
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.1) 10%,
+      rgba(255, 255, 255, 0.000025) 50%,
+      rgba(255, 255, 255, 0.000025) 50%,
+      rgba(255, 255, 255, 0.025) 100%
+    );
+  }
+
+  /* Tech logos */
+  .tech-logo {
+    @apply w-10 h-10 rounded-md p-2 bg-neutral-100/10 backdrop-blur-lg flex justify-center items-center;
+  }
+
+  /* Client reviews */
+  .client-container {
+    @apply grid md:grid-cols-2 grid-cols-1 gap-5 mt-12;
+  }
+
+  .client-review {
+    @apply rounded-lg md:p-10 p-5 col-span-1 bg-black-300/50;
+  }
+
+  .client-content {
+    @apply flex lg:flex-row flex-col justify-between lg:items-center items-start gap-5 mt-7;
+  }
+
+  /* Work showcase */
+  .work-container {
+    @apply grid lg:grid-cols-3 grid-cols-1 gap-5 mt-12;
+  }
+
+  .work-canvas {
+    @apply col-span-1 rounded-lg bg-black-200 border border-black-300;
+  }
+
+  .work-content {
+    @apply col-span-2 rounded-lg bg-black-200 border border-black-300;
+  }
+
+  .work-content_container {
+    @apply grid grid-cols-[auto_1fr] items-start gap-5  transition-all ease-in-out duration-500 cursor-pointer hover:bg-black-300 rounded-lg sm:px-5 px-2.5;
+  }
+
+  .work-content_logo {
+    @apply rounded-3xl w-16 h-16 p-2 bg-black-600;
+  }
+
+  .work-content_bar {
+    @apply flex-1 w-0.5 mt-4 h-full bg-black-300 group-hover:bg-black-500 group-last:hidden;
+  }
+  /* Contact section */
+  .contact-container {
+    @apply max-w-xl relative z-10 sm:px-10 px-5 mt-12;
+  }
+
+  .field-label {
+    @apply text-lg text-white-600;
+  }
+
+  .field-input {
+    @apply w-full bg-black-300 px-5 py-2 min-h-14 rounded-lg placeholder:text-white-500 text-lg text-white-800 shadow-black-200 shadow-2xl focus:outline-none;
+  }
+
+  .field-btn {
+    @apply bg-black-500 px-5 py-2 min-h-12 rounded-lg shadow-black-200 shadow-2xl flex justify-center items-center text-lg text-white gap-3;
+  }
+
+  .field-btn_arrow {
+    @apply w-2.5 h-2.5 object-contain invert brightness-0;
+  }
+
+  /* Waving Hand Animation */
+  .waving-hand {
+    display: inline-block;
+    transform-origin: 70% 70%; /* pivot point for waving */
+    animation: wave 1.5s infinite;
+  }
+
+    /*  footer */
+  .social-icon {
+    @apply w-12 h-12 rounded-full flex justify-center items-center bg-black-300 border border-black-200;
+  }
+}
+
+  @keyframes wave {
+    0% { transform: rotate(0deg); }
+    15% { transform: rotate(14deg); }
+    30% { transform: rotate(-8deg); }
+    40% { transform: rotate(14deg); }
+    50% { transform: rotate(-4deg); }
+    60% { transform: rotate(10deg); }
+    70% { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); }
+  }
+
