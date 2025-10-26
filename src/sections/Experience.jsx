@@ -4,6 +4,7 @@ import { OrbitControls } from '@react-three/drei';
 import Developer from '../components/Developer.jsx';
 import CanvasLoader from '../components/CanvasLoader.jsx';
 import { workExperiences } from '../constants/index.js';
+import { assetPath } from '../utils/assetPath.js'; 
 
 const Experience = () => {
   const [animationName, setAnimationName] = useState('waving');
@@ -34,7 +35,7 @@ const Experience = () => {
                   className="work-content_container group">
                   <div className="flex flex-col h-full justify-start items-center py-2">
                     <div className="work-content_logo">
-                      <img className="w-full h-full" src={item.icon} alt="" />
+                      <img className="w-full h-full" src={assetPath(item.icon)} alt={item.name} />
                     </div>
                     <div className="work-content_bar" />
                   </div>

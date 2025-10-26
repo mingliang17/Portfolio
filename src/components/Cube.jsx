@@ -6,7 +6,6 @@ import gsap from 'gsap';
 import { useEffect, useRef, useState } from 'react';
 import { Float, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
-
 import { assetPath } from '../utils/assetPath.js'; 
 
 // Custom hook to load texture without causing render-phase updates
@@ -44,10 +43,10 @@ const useTextureLoader = (path) => {
 };
 
 const Cube = ({ ...props }) => {
-  const { nodes } = useGLTF('/models/cube.glb');
+  const { nodes } = useGLTF(assetPath('/models/cube.glb'));
 
   // Use custom texture loader instead of useTexture
-  const { texture } = useTextureLoader('textures/cube.png');
+  const { texture } = useTextureLoader(assetPath('textures/cube.png'));
 
   const cubeRef = useRef();
   const [hovered, setHovered] = useState(false);
@@ -95,6 +94,6 @@ const Cube = ({ ...props }) => {
   );
 };
 
-useGLTF.preload('/models/cube.glb');
+useGLTF.preload(assetPath('/models/cube.glb'));
 
 export default Cube;

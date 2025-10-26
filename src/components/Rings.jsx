@@ -47,7 +47,7 @@ const Rings = ({ position }) => {
   }, []);
 
   // Use custom texture loader instead of useTexture
-  const { texture } = useTextureLoader('textures/rings.png');
+  const { texture } = useTextureLoader(assetPath('textures/rings.png'));
 
   useEffect(() => {
     if (refList.current.length === 0) return;

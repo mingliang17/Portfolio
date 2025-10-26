@@ -7,14 +7,14 @@ import { assetPath } from '../utils/assetPath.js';
 const Developer = ({ animationName = 'waving', ...props }) => {
   const group = useRef();
 
-  const { scene } = useGLTF('/models/human/developer.glb');
+  const { scene } = useGLTF(assetPath('/models/human/developer.glb'));
   const clonedScene = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
 
   // Load animations and check them
-  const waving = useFBX('/models/human/waving.fbx');
-  const idle = useFBX('/models/human/idle.fbx');
-  const dancing = useFBX('/models/human/dancing.fbx');
-  const thankful = useFBX('/models/human/thankful.fbx');
+  const waving = useFBX(assetPath('/models/human/waving.fbx'));
+  const idle = useFBX(assetPath('/models/human/idle.fbx'));
+  const dancing = useFBX(assetPath('/models/human/dancing.fbx'));
+  const thankful = useFBX(assetPath('/models/human/thankful.fbx'));
 
   console.log('Waving animations:', waving.animations);
   console.log('Idle animations:', idle.animations);
@@ -61,10 +61,10 @@ const Developer = ({ animationName = 'waving', ...props }) => {
   );
 };
 
-useGLTF.preload('/models/human/developer.glb');
-useFBX.preload('/models/human/waving.fbx');
-useFBX.preload('/models/human/idle.fbx');
-useFBX.preload('/models/human/dancing.fbx');
-useFBX.preload('/models/human/thankful.fbx');
+useGLTF.preload(assetPath('/models/human/developer.glb'));
+useFBX.preload(assetPath('/models/human/waving.fbx'));
+useFBX.preload(assetPath('/models/human/idle.fbx'));
+useFBX.preload(assetPath('/models/human/dancing.fbx'));
+useFBX.preload(assetPath('/models/human/thankful.fbx'));
 
 export default Developer;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { navLinks } from '../constants/index.js';
+import { assetPath } from '../utils/assetPath.js'; 
 
 const NavItems = ({ mobile = false, onClick = () => {} }) => (
   <ul className={mobile ? "flex flex-col space-y-4" : "flex space-x-8"}>
@@ -20,34 +21,17 @@ const NavItems = ({ mobile = false, onClick = () => {} }) => (
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // 1. Effect for body scroll lock
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-
-    // Cleanup function
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    return () => { document.body.style.overflow = 'auto'; };
   }, [isOpen]);
 
-  // 2. Effect for escape key
+  // Close menu on Escape key
   useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape') {
-        setIsOpen(false);
-      }
-    };
-
+    const handleEscape = (e) => { if (e.key === 'Escape') setIsOpen(false); };
     window.addEventListener('keydown', handleEscape);
-    
-    // Cleanup function
-    return () => {
-      window.removeEventListener('keydown', handleEscape);
-    };
+    return () => window.removeEventListener('keydown', handleEscape);
   }, []);
 
   return (
@@ -57,29 +41,28 @@ const Navbar = () => {
           <a href="/" className="text-neutral-400 font-bold text-xl hover:text-white transition-colors">
             Adrian
           </a>
-          <a className="text-anythingiwant-400">Test</a>
 
-          {/* Desktop Navigation - always hidden on mobile */}
-          <nav className="hidden md:block" >
+          {/* Desktop Navigation */}
+          <nav className="hidden md:block">
             <NavItems />
           </nav>
 
-          {/* Mobile menu button - always hidden on desktop */}
+          {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-neutral-400 z-60 hover:text-white focus:outline-none"
             aria-label="Toggle menu"
           >
             <img 
-              src={isOpen ? '/assets/close.svg' : '/assets/menu.svg'} 
-              alt="Menu" 
+              src={assetPath(isOpen ? 'close.svg' : 'menu.svg')} 
+              alt={isOpen ? 'Close menu' : 'Open menu'} 
               className="w-6 h-6" 
             />
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation - only shows on mobile when toggled */}
+      {/* Mobile Navigation */}
       {isOpen && (
         <div className="md:hidden fixed inset-0 bg-black/95 z-40 pt-16">
           <div className="p-6">
@@ -91,4 +74,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;  
+export default Navbar;

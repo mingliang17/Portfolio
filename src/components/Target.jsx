@@ -5,7 +5,7 @@ import { assetPath } from '../utils/assetPath.js';
 
 const Target = (props) => {
   const targetRef = useRef();  // Creating a reference to the mesh object
-  const { scene } = useGLTF('../models/target.gltf');  // Load the GLTF model
+  const { scene } = useGLTF(assetPath('models/target.gltf'));  // Load the GLTF model
 
   // Using useEffect to trigger GSAP animation
   useEffect(() => {

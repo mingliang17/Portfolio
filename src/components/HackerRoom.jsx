@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei"
 import { assetPath } from '../utils/assetPath.js'; 
 
 const HackerRoom = forwardRef((props, ref) => {
-  const { nodes, materials } = useGLTF("/models/hacker-room.glb")
+  const { nodes, materials } = useGLTF(assetPath("/models/hacker-room.glb"))
 
   return (
     <group ref={ref} {...props} dispose={null}>
@@ -25,6 +25,6 @@ const HackerRoom = forwardRef((props, ref) => {
   )
 })
 
-useGLTF.preload("/models/hacker-room.glb")
+useGLTF.preload(assetPath("/models/hacker-room.glb"))
 
 export default HackerRoom

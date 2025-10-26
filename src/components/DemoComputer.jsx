@@ -8,9 +8,9 @@ import { assetPath } from '../utils/assetPath.js';
 
 const DemoComputer = (props) => {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/models/computer.glb');
-  
-  const txt = useVideoTexture(props.texture ? props.texture :'/textures/project/project4.mp4');
+  const { nodes, materials, animations } = useGLTF(assetPath('/models/computer.glb'));
+
+  const txt = useVideoTexture(props.texture ? props.texture : assetPath('/textures/project/project4.mp4'));
 
   
   useGSAP(() => {
