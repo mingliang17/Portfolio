@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import { Center } from '@react-three/drei';
 import { useCallback, useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
+import { assetPath } from '../utils/assetPath.js'; 
 
 // Custom hook to load texture without causing render-phase updates
 const useTextureLoader = (path) => {

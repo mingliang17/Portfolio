@@ -2,6 +2,7 @@ import React from 'react'
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { easing } from 'maath'
+import { assetPath } from '../utils/assetPath.js'; 
 
 const HeroCamera = ({children, isMobile}) => {
     const groupRef = useRef();

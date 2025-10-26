@@ -1,5 +1,6 @@
 import React, { forwardRef } from "react"
 import { useGLTF } from "@react-three/drei"
+import { assetPath } from '../utils/assetPath.js'; 
 
 const HackerRoom = forwardRef((props, ref) => {
   const { nodes, materials } = useGLTF("/models/hacker-room.glb")

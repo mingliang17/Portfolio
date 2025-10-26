@@ -1,5 +1,6 @@
 import React from 'react'
 import {Html, useProgress} from '@react-three/drei'
+import { assetPath } from '../utils/assetPath.js'; 
 
 const CanvasLoader = () => {
     const { progress } = useProgress();
@@ -9,7 +10,7 @@ const CanvasLoader = () => {
             center
             style={{
                 display: 'flex',
-                jsutifyContent: 'center',
+                justifyContent: 'center',
                 alignItems: 'center',
                 flexDirection: 'column',
             }}

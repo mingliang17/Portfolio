@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { useAnimations, useFBX, useGLTF } from '@react-three/drei';
 import { SkeletonUtils } from 'three-stdlib';
+import { assetPath } from '../utils/assetPath.js'; 
+
 
 const Developer = ({ animationName = 'waving', ...props }) => {
   const group = useRef();

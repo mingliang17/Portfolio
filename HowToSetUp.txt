@@ -35,3 +35,9 @@ Install React-Responsive
 
 Install Emailjs
 npm install @emailjs/browser
+
+Avaturn
+https://hub.avaturn.me/
+
+Mixamo
+

@@ -7,6 +7,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Float, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
+import { assetPath } from '../utils/assetPath.js'; 
+
 // Custom hook to load texture without causing render-phase updates
 const useTextureLoader = (path) => {
   const [texture, setTexture] = useState(null);

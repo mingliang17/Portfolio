@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { gsap } from 'gsap';  // Import GSAP for animation
+import { assetPath } from '../utils/assetPath.js'; 
 
 const Target = (props) => {
   const targetRef = useRef();  // Creating a reference to the mesh object

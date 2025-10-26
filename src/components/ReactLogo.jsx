@@ -9,6 +9,7 @@ Title: React logo
 
 import React, { useRef } from 'react'
 import { Float, useGLTF } from '@react-three/drei'
+import { assetPath } from '../utils/assetPath.js'; 
 
 const ReactLogo = (props) => {
     const { nodes, materials } = useGLTF('/models/react.glb')
